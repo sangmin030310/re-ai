@@ -37,3 +37,47 @@ Re AI는 사용자가 부산물 정보를 입력하면 재활용 경로를 검�
 | [api.ts](./frontend/src/lib/api.ts) | 프론트엔드에서 백엔드 API를 호출하는 코드 |
 | [main.py](./backend/app/main.py) | FastAPI 서버와 주요 API |
 | [document_archive.py](./backend/app/document_archive.py) | 문서함의 저장·조회·삭제 로직 |
+
+## 로컬 실행 방법
+
+**실행 환경** · Git, Node.js 22, Python 3.12  
+아래 명령은 Windows **CMD** 기준입니다. VS Code를 사용한다면 터미널에서 **Command Prompt**를 선택하세요.
+
+### 1. 코드 내려받기
+
+```cmd
+git clone https://github.com/sangmin030310/re-ai.git
+cd re-ai
+```
+
+이미 내려받았다면 `re-ai` 폴더에서 2번부터 진행합니다.
+
+### 2. 프론트엔드 빌드하기
+
+```cmd
+set "VITE_API_BASE_URL=/"
+npm --prefix frontend ci
+npm --prefix frontend run build
+```
+
+### 3. FastAPI 서버 실행하기
+
+같은 터미널에서 이어서 실행합니다.
+
+```cmd
+cd backend
+py -3.12 -m venv .venv
+".venv\Scripts\python.exe" -m pip install -r requirements.txt
+
+set "REAI_ENV=development"
+set "REAI_CHAT_PROVIDER=mock"
+set "REAI_DATA_DIR=..\data\readme-demo"
+
+".venv\Scripts\python.exe" -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+### 4. 브라우저에서 확인하기
+
+서버가 시작되면 **[Re AI 열기](http://127.0.0.1:8000)**를 누릅니다. 채팅창에 `PP 폐플라스틱 월 3톤 발생`을 입력하면 시연용 응답을 확인할 수 있습니다.
+
+로컬 시연 모드는 로그인이나 API 키 없이 사용할 수 있으며, 시연 중 저장한 데이터는 `data/readme-demo/`에 보관됩니다. 종료할 때는 터미널에서 **Ctrl+C**를 누릅니다.
