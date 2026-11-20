@@ -1,0 +1,18 @@
+# Secrets and local data
+.env
+.env.*
+!.env.example
+!.env.demo-workspaces.example
+!.env.production.example
+data/
+backend/.venv/
+backend/__pycache__/
+backend/.pytest_cache/
+backend/**/__pycache__/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.pyc
+.DS_Store
+.vscode/
+!.env.online.example

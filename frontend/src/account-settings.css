@@ -1,0 +1,46 @@
+.sidebar-account-button {
+  width: calc(100% + 34px);
+  border: 0;
+  border-top: 1px solid #263951;
+  background: none;
+  color: #c3cedc;
+  text-align: left;
+}
+
+.sidebar-account-button:hover { background: #192c44; }
+.sidebar-account-button:focus-visible { outline: 2px solid #8cdbbd; outline-offset: -3px; }
+.sidebar-account-button .profile-avatar, .sidebar-account-button > svg { flex: none; }
+.sidebar-account-button > svg { margin-left: auto; }
+.sidebar-account-label { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.sidebar-account-button b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+.account-settings-dialog {
+  width: min(460px, calc(100% - 30px));
+  max-height: calc(100dvh - 30px);
+  margin: auto;
+  padding: clamp(16px, 5vw, 25px);
+  overflow: auto;
+  border: 1px solid #dbe7e3;
+  border-radius: 15px;
+  background: #fff;
+  color: #172a31;
+  box-shadow: 0 16px 55px #0b1b3140;
+}
+
+.account-settings-dialog::backdrop { background: #0b1b3180; }
+.account-settings-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.account-settings-heading h2 { margin: 0; font-size: 21px; }
+.account-settings-company {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 12px;
+  padding: 13px 15px;
+  margin: 16px 0 21px;
+  background: #f2f7f5;
+  border-radius: 10px;
+}
+.account-settings-company dt { color: #526b6d; font-size: 12px; }
+.account-settings-company dd { margin: 5px 0 0; overflow-wrap: anywhere; font-size: 14px; font-weight: 650; }
+.account-settings-recovery h3 { margin: 0 0 9px; font-size: 16px; }
+.account-settings-recovery p { font-size: 13px; line-height: 1.6; overflow-wrap: anywhere; }
+.account-settings-footer { display: flex; justify-content: flex-end; border-top: 1px solid #e0ebe8; margin-top: 18px; padding-top: 14px; }

@@ -1,0 +1,3 @@
+{$REAI_DOMAIN} {
+    reverse_proxy reai:8000
+}

@@ -1,0 +1,33 @@
+name: re-ai
+
+services:
+  reai:
+    build: .
+    env_file: .env.server
+    restart: unless-stopped
+    volumes:
+      - reai-data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "from urllib.request import urlopen; urlopen('http://127.0.0.1:8000/api/health', timeout=2).close()"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  caddy:
+    image: caddy:2-alpine
+    environment:
+      REAI_DOMAIN: "${REAI_DOMAIN:?Set REAI_DOMAIN in .env.server}"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  reai-data:
+  caddy-data:
+  caddy-config:
