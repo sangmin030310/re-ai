@@ -38,37 +38,47 @@ Re AI는 사용자가 부산물 정보를 입력하면 재활용 경로를 검�
 | [main.py](./backend/app/main.py) | FastAPI 서버와 주요 API |
 | [document_archive.py](./backend/app/document_archive.py) | 문서함의 저장·조회·삭제 로직 |
 
-## 로컬 실행 방법
+## 로컬 실행 방법 · Windows
 
-**실행 환경** · Git, Node.js 22, Python 3.12  
-아래 명령은 Windows **CMD** 기준입니다. VS Code를 사용한다면 터미널에서 **Command Prompt**를 선택하세요.
+### 01. 필요한 프로그램 설치
 
-### 1. 코드 내려받기
+- [Node.js 다운로드](https://nodejs.org/en/download/)에서 **22.x**를 선택하고 Windows 설치 파일(`.msi`)을 실행합니다.
+- [Python 3.12 Windows 설치 파일](https://www.python.org/downloads/release/python-31210/)에서 PC에 맞는 **Windows installer**를 내려받아 설치합니다.
+
+설치가 끝나면 Windows에서 **명령 프롬프트(CMD)**를 새로 열고 아래 명령을 입력합니다. 각각 버전 번호가 나오면 다음 단계로 넘어갑니다.
 
 ```cmd
-git clone https://github.com/sangmin030310/re-ai.git
-cd re-ai
+node -v
+npm -v
+py -3.12 --version
 ```
 
-이미 내려받았다면 `re-ai` 폴더에서 2번부터 진행합니다.
+### 02. GitHub에서 코드 내려받기
 
-### 2. 프론트엔드 빌드하기
+1. 저장소 상단의 초록색 **Code** 버튼을 누르고 **Download ZIP**을 선택합니다.
+2. ZIP 압축을 풉니다.
+3. 파일 탐색기에서 **`frontend`와 `backend` 폴더가 함께 보이는 위치**로 들어갑니다.
+4. 탐색기 주소창에 `cmd`를 입력하고 Enter를 눌러 해당 폴더에서 명령 프롬프트를 엽니다.
+
+### 03. 화면 빌드와 서버 라이브러리 설치
+
+위에서 연 CMD에 아래 명령을 순서대로 입력합니다. 처음에는 필요한 파일을 내려받으므로 몇 분 정도 걸릴 수 있습니다.
 
 ```cmd
 set "VITE_API_BASE_URL=/"
 npm --prefix frontend ci
 npm --prefix frontend run build
-```
 
-### 3. FastAPI 서버 실행하기
-
-같은 터미널에서 이어서 실행합니다.
-
-```cmd
 cd backend
 py -3.12 -m venv .venv
 ".venv\Scripts\python.exe" -m pip install -r requirements.txt
+```
 
+### 04. Re AI 서버 실행
+
+같은 CMD에서 아래 명령을 이어서 입력합니다.
+
+```cmd
 set "REAI_ENV=development"
 set "REAI_CHAT_PROVIDER=mock"
 set "REAI_DATA_DIR=..\data\readme-demo"
@@ -76,8 +86,12 @@ set "REAI_DATA_DIR=..\data\readme-demo"
 ".venv\Scripts\python.exe" -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-### 4. 브라우저에서 확인하기
+`Uvicorn running on http://127.0.0.1:8000`이 나오면 실행된 상태입니다. 체험하는 동안 이 창을 열어 두세요.
 
-서버가 시작되면 **[Re AI 열기](http://127.0.0.1:8000)**를 누릅니다. 채팅창에 `PP 폐플라스틱 월 3톤 발생`을 입력하면 시연용 응답을 확인할 수 있습니다.
+### 05. 브라우저에서 체험하기
 
-로컬 시연 모드는 로그인이나 API 키 없이 사용할 수 있으며, 시연 중 저장한 데이터는 `data/readme-demo/`에 보관됩니다. 종료할 때는 터미널에서 **Ctrl+C**를 누릅니다.
+**[Re AI 열기](http://127.0.0.1:8000)**를 누릅니다. 채팅창에 `PP 폐플라스틱 월 3톤 발생`을 입력하면 시연용 응답을 확인할 수 있습니다. 문서함에서는 테스트 파일을 업로드하고 다시 열어볼 수 있습니다.
+
+로컬 시연에는 **로그인이나 API 키가 필요 없습니다.** 체험 데이터는 프로젝트의 `data/readme-demo/`에 저장됩니다. 실행을 종료하려면 CMD에서 **Ctrl+C**를 누릅니다.
+
+다시 실행할 때는 파일 탐색기에서 `backend` 폴더를 열고, 주소창에 `cmd`를 입력한 뒤 **04번**부터 진행합니다.
