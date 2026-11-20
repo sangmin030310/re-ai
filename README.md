@@ -35,5 +35,3 @@ Re AI는 이런 조건을 확인하고, 해당 부산물을 활용할 수 있는
 | `frontend/src/lib/api.ts` | 프론트엔드에서 백엔드 API를 호출하고 응답을 받는 코드 |
 
 GitHub에 올린 코드는 React와 TypeScript로 작성한 프론트엔드입니다. 실제 AI 답변이나 문서 저장 기능을 사용하려면 FastAPI 백엔드도 실행해야 합니다.
-
-[Re AI 프론트엔드 소스 코드 보기](https://github.com/sangmin030310/sangmin030310/tree/main/frontend)
